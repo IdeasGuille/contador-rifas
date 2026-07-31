@@ -101,7 +101,9 @@ function seleccionar(valor){
     });
 
     event.target.classList.add('seleccionada');
-}
+} document.querySelector('.enviar').addEventListener('click', function () {
+    alert('¡Botón ENVIAR funcionando!');
+});
 
 // Selecciona 1 por defecto.
 document.querySelector('.opcion').classList.add('seleccionada');

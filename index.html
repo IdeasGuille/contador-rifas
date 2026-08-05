@@ -1,52 +1,127 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8">
+<html lang="es">
+<head>
+<meta charset="UTF-8">
 <title>Presentador v0.6</title>
+
 <style>
-body{font-family:Arial;max-width:700px;margin:40px auto}
+body{
+    font-family:Arial;
+    max-width:700px;
+    margin:40px auto
+}
 .center{text-align:center}
-button{padding:10px;margin:4px}
+button{
+    padding:10px;
+    margin:4px;
+    cursor:pointer
+}
 .sel{background:#ddd;}
 .hidden{display:none}
-</style></head><body>
+</style>
+</head>
+
+<body>
+
 <div class="center">
 <h1>RIFAS GUILLE</h1>
-<p>Siempre hay un ganador.<br><b>Sorteo de 2 a 5 con Guille.</b></p>
+<p>Siempre hay un ganador.<br>
+<b>Sorteo de 2 a 5 con Guille.</b></p>
 </div>
 
 <h2>Bienvenido de nuevo, ¿me recuerdas tu nombre?</h2>
-<button onclick="document.getElementById('p2').className=''">Jorge</button>
+
+<button onclick="document.getElementById('p2').className=''">
+Jorge
+</button>
 
 <div id="p2" class="hidden">
-<p>Muchas gracias por tu espera, nuestro sistema confirma que efectivamente realizaste tu aporte.</p>
+
+<p>
+Muchas gracias por tu espera, nuestro sistema confirma que efectivamente realizaste tu aporte.
+</p>
+
 <h3>Números disponibles</h3>
+
 <div id="nums"></div>
-<p id="estado">Recuerda tu elección, 0 números.</p>
+
+<p id="estado">
+Recuerda tu elección, 0 números.
+</p>
+
 <button onclick="enviar()">ENVIAR</button>
+
 </div>
 
 <script>
+
 let elegidos=[];
+
 const disponibles=['01','02','03','05','07','09','10'];
+
 const cont=document.getElementById('nums');
 
 disponibles.forEach(n=>{
- let b=document.createElement('button');
- b.innerText=n;
- b.onclick=function(){
-   if(elegidos.includes(n)){
-      elegidos=elegidos.filter(x=>x!==n);
-      b.className='';
-   }else if(elegidos.length<4){
-      elegidos.push(n);
-      b.className='sel';
-   }
-   document.getElementById('estado').innerText='Recuerda tu elección, '+elegidos.length+' número(s).';
- };
- cont.appendChild(b);
+
+    let b=document.createElement('button');
+
+    b.innerText=n;
+
+    b.onclick=function(){
+
+        if(elegidos.includes(n)){
+
+            elegidos=elegidos.filter(x=>x!==n);
+
+            b.className='';
+
+        }else if(elegidos.length<4){
+
+            elegidos.push(n);
+
+            b.className='sel';
+
+        }
+
+        document.getElementById('estado').innerText=
+        'Recuerda tu elección, '+elegidos.length+' número(s).';
+
+    };
+
+    cont.appendChild(b);
+
 });
 
+
 function enviar(){
- alert('Números seleccionados: '+(elegidos.join(', ')||'Ninguno'));
+
+    if(elegidos.length===0){
+
+        alert('Por favor selecciona al menos un número.');
+
+        return;
+
+    }
+
+    const nombre='Jorge';
+
+    const numeros=elegidos.join(', ');
+
+    const mensaje=
+    'Hola, soy '+nombre+
+    '. Ya realicé mi aporte y escogí los siguientes números: '+
+    numeros+
+    '.';
+
+    const url=
+    'https://wa.me/573014957978?text='+
+    encodeURIComponent(mensaje);
+
+    window.open(url,'_blank');
+
 }
+
 </script>
-</body></html>
+
+</body>
+</html>

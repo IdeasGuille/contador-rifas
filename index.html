@@ -50,10 +50,6 @@ p{
     font-weight:bold;
 }
 
-.oculto{
-    display:none;
-}
-
 button{
     width:90%;
     padding:15px;
@@ -77,8 +73,10 @@ button{
 
 <h2>Sorteo Dispositivo Watch Onn</h2>
 
-<h2>Bienvenido de nuevo,<br>
-¿me recuerdas tu nombre?</h2>
+<h2>
+Bienvenido de nuevo,<br>
+¿me recuerdas tu nombre?
+</h2>
 
 <div class="nombre">
 Carlos Pineda
@@ -93,22 +91,16 @@ efectivamente nuestro sistema confirma tu aporte de
 $14.000
 </div>
 
-<div id="continuar">
-
-<button onclick="mostrarSiguiente()">
+<button onclick="continuar()">
 CONTINUAR
 </button>
 
 </div>
 
-</div>
-
 <script>
 
-function mostrarSiguiente(){
-
-    document.getElementById("continuar").style.display="none";
-
+function continuar(){
+    alert("Continuamos con la selección de números.");
 }
 
 </script>

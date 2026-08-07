@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rifas Guille - Fase A</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+    text-align:center;
+}
+
+.contenedor{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+.logo{
+    max-width:220px;
+    max-height:120px;
+    object-fit:contain;
+    margin-bottom:5px;
+}
+
+h1{
+    font-size:32px;
+    margin:5px;
+}
+
+h2{
+    font-size:24px;
+    margin:15px 0;
+}
+
+p{
+    font-size:22px;
+    line-height:1.5;
+}
+
+.fecha{
+    font-size:22px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.registro{
+    background:#fff3cd;
+    border-radius:10px;
+    padding:12px;
+    margin:15px 0;
+}
+
+.registro p{
+    margin:0 0 10px 0;
+    font-size:20px;
+}
+
+.registro button{
+    margin-top:0;
+    width:auto;
+    padding:10px 20px;
+    font-size:20px;
+}
+
+.aportes{
+    margin:20px 0;
+}
+
+.aportes p{
+    margin:5px 0;
+    font-weight:bold;
+}
+
+.opciones{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:15px 0;
+}
+
+.opcion{
+    width:70px;
+    padding:12px 0;
+    font-size:24px;
+    font-weight:bold;
+    background:white;
+    color:#0066cc;
+    border:3px solid #0066cc;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.opcion.seleccionado{
+    background:#0066cc;
+    color:white;
+}
+
+.aporte{
+    font-size:30px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.forma-pago{
+    margin-top:20px;
+}
+
+.forma-pago p{
+    margin:8px 0;
+}
+
+.metodos-pago{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:15px 0;
+}
+
+.metodo-pago{
+    min-width:130px;
+    padding:12px 10px;
+    font-size:18px;
+    font-weight:bold;
+    background:white;
+    color:#0066cc;
+    border:3px solid #0066cc;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.metodo-pago.seleccionado{
+    background:#0066cc;
+    color:white;
+}
+
+.paso2{
+    display:none;
+}
+
+.campo{
+    width:90%;
+    box-sizing:border-box;
+    padding:14px;
+    font-size:22px;
+    border:1px solid #aaa;
+    border-radius:10px;
+    margin:10px auto;
+    text-align:center;
+}
+
+button.principal{
+    width:90%;
+    padding:15px;
+    font-size:24px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    border-radius:10px;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+.nota{
+    font-size:19px;
+}
+
+.oculto{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- FASE A - PASO 1 -->
+    <div id="paso1">
+
+        <img src="Logo Rifas Guille.png" alt="Rifas Guille" class="logo">
+
+        <h1>RIFAS GUILLE</h1>
+
+        <p><b>Siempre hay un ganador</b></p>
+
+        <h2>Sorteo Dispositivo Watch Onn</h2>
+
+        <div class="fecha">
+            Fecha de sorteo 30 de agosto de 2026 a las 9 pm.
+        </div>
+
+        <div class="registro">
+            <p>
+                ¿Ya estás registrado en Rifas Guille?<br>
+                Si no estás registrado, no puedes participar en este sorteo.
+            </p>
+            <!-- Coloca aquí el enlace real de registro cuando esté definido -->
+            <button type="button" onclick="registrarme()">REGISTRARME</button>
+        </div>
+
+        <div class="aportes">
+            <p>Solo $7.000 x Número</p>
+            <p>1# = $7.000</p>
+            <p>2# = $14.000</p>
+            <p>3# = $21.000</p>
+            <p>4# = $28.000</p>
+            <p>5# = $35.000</p>
+        </div>
+
+        <h2>Bienvenido.<br>¿Cuántos números desea comprar?</h2>
+
+        <div class="opciones">
+            <button class="opcion" onclick="seleccionar(1)">1#</button>
+            <button class="opcion" onclick="seleccionar(2)">2#</button>
+            <button class="opcion" onclick="seleccionar(3)">3#</button>
+            <button class="opcion" onclick="seleccionar(4)">4#</button>
+            <button class="opcion" onclick="seleccionar(5)">5#</button>
+        </div>
+
+        <button class="principal" onclick="mostrarPaso2()">ENVIAR</button>
+
+        <div id="resultado1" class="oculto">
+            <p>Valor del aporte:</p>
+            <div class="aporte" id="valorAporte">$7.000</div>
+
+            <div class="forma-pago">
+                <h2>Escoge tu forma de pago:</h2>
+
+                <div class="metodos-pago">
+                    <button type="button" class="metodo-pago" onclick="seleccionarPago('Efectivo', this)">
+                        EFECTIVO
+                    </button>
+
+                    <button type="button" class="metodo-pago" onclick="seleccionarPago('Nequi 3014957978', this)">
+                        NEQUI<br>3014957978
+                    </button>
+
+                    <button type="button" class="metodo-pago" onclick="seleccionarPago('Llave 3014957978', this)">
+                        LLAVE<br>3014957978
+                    </button>
+                </div>
+
+                <p id="pagoSeleccionado" class="oculto">
+                    Forma de pago seleccionada:
+                    <b id="textoPago"></b>
+                </p>
+            </div>
+        </div>
+
+        <div id="continuacion" class="oculto">
+            <h2>Nombre y Apellido</h2>
+
+            <input id="nombre" class="campo" type="text" placeholder="Escribe tu nombre y apellido">
+
+            <p>
+                Gracias por participar en Rifas Guille.
+            </p>
+
+            <p>
+                Envía el comprobante al WhatsApp 3014957978
+            </p>
+
+            <p>Valor del aporte:</p>
+            <div class="aporte" id="valorAporte2">$7.000</div>
+
+            <p>Te esperamos pronto para continuar</p>
+
+            <button class="principal" onclick="enviarDatos()">ENVIAR</button>
+        </div>
+
+    </div>
+
+    <!-- FASE A - PASO 2 -->
+    <div id="paso2" class="paso2">
+
+        <h2>Nombre y Apellido</h2>
+
+        <input id="nombre" class="campo" type="text" placeholder="Escribe tu nombre y apellido">
+
+        <p>
+            Gracias por participar en Rifas Guille.
+        </p>
+
+        <p>
+            Envía el comprobante al WhatsApp 3014957978
+        </p>
+
+        <p>Valor del aporte:</p>
+        <div class="aporte" id="valorAporte2">$7.000</div>
+
+        <p>Te esperamos pronto para continuar</p>
+
+        <button class="principal" onclick="enviarDatos()">ENVIAR</button>
+
+    </div>
+
+</div>
+
+<!-- PUBLICIDAD EDITABLE -->
+<div style="max-width:500px;margin:15px auto;text-align:center;">
+    <div contenteditable="true" style="font-size:18px;padding:10px;border:1px dashed #999;border-radius:8px;">
+        Publicidad editable
+    </div>
+</div>
+
+<script>
+let cantidad = 1;
+let aporte = 7000;
+let formaPago = "";
+
+function seleccionar(valor){
+    cantidad = valor;
+    aporte = cantidad * 7000;
+
+    document.querySelectorAll(".opcion").forEach(function(boton){
+        boton.classList.remove("seleccionado");
+    });
+
+    document.querySelectorAll(".opcion")[cantidad - 1].classList.add("seleccionado");
+
+    document.getElementById("valorAporte").textContent =
+        "$" + aporte.toLocaleString("es-CO");
+}
+
+function mostrarPaso2(){
+    document.getElementById("resultado1").classList.remove("oculto");
+    document.getElementById("continuacion").classList.remove("oculto");
+    document.getElementById("valorAporte2").textContent =
+        "$" + aporte.toLocaleString("es-CO");
+}
+
+function seleccionarPago(metodo, boton){
+    formaPago = metodo;
+
+    document.querySelectorAll(".metodo-pago").forEach(function(b){
+        b.classList.remove("seleccionado");
+    });
+
+    boton.classList.add("seleccionado");
+
+    document.getElementById("textoPago").textContent = metodo;
+    document.getElementById("pagoSeleccionado").classList.remove("oculto");
+}
+
+function enviarDatos(){
+    const nombre = document.getElementById("nombre").value.trim();
+
+    if(!nombre){
+        alert("Por favor escribe tu nombre y apellido.");
+        return;
+    }
+
+    if(!formaPago){
+        alert("Por favor selecciona una forma de pago.");
+        return;
+    }
+
+    const mensaje =
+        "Hola, soy " + nombre +
+        ". Deseo comprar " + cantidad +
+        " número(s) para el Sorteo Dispositivo Watch Onn. " +
+        "Valor del aporte: $" + aporte.toLocaleString("es-CO") +
+        ". Forma de pago: " + formaPago + ".";
+
+    const url = "https://wa.me/573014957978?text=" + encodeURIComponent(mensaje);
+    window.open(url, "_blank");
+}
+
+function registrarme(){
+    window.open("https://forms.gle/6ipCX2xGxAR4AABv9", "_blank");
+}
+</script>
+
+</body>
+</html>
